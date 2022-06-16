@@ -6,4 +6,6 @@ def find_quadratic_equation(a:int,b:int,c:int):
 
     return ' and '.join(str(x) for x in final_factors)
 
+
+
 print(find_quadratic_equation(1,8,12))
