@@ -24,39 +24,40 @@ import csv
 # #a)
 def dict_increment():
     keys =['firstname','lastname','day','month','attendance','height','weight']
-    listo = []
+    data = {}
+     
+    data['firstname']=input("Enter firstname: ")
+    data['lastname']=input("Enter lastname: ")
+    data['day']=input("Enter day: ")
+    data['month']=input("Enter month: ")
+    data['attendance']=input("Enter attendance: ")
+    data['height']=input("Enter height: ")
+    data['weight']=input("Enter weight")
     
-    dict_profile = {}
-        
-    for key in keys:
-        dict_profile[key]=input("Enter " + key)
-    listo.append(dict_profile)
 
-    keyy = listo[0].keys()
-
-    a_file = open("output.csv", "w")
-    dict_writer = csv.DictWriter(a_file, keyy)
-    dict_writer.writeheader()
-    dict_writer.writerows(listo)
-    a_file.close()
+    with open("output.csv", "w") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(keys)
+        csv_writer.writerows(data[keys])
 
     print('new profile is added successful')
 
-#print(dict_increment())
+print(dict_increment())
 
 def read_profile_records():
     dict_from_csv = {}
 
-    with open('output.csv', mode='r') as inp:
+    with open('output.csv', newline='') as inp:
         reader = csv.DictReader(inp)
         for row in reader:
-            (row['firstname'], row['lastname'],row['day'],row['month'],row['attendance'],row['height'],row['weight'])
-    return row
+            rows= row
+    return rows
     
-print(read_profile_records())
+#print(read_profile_records())
 
-def check_min_age():
-    pass
+def check_min_age(*fn):
+    pass 
+#print(check_min_age(read_profile_records()))
 
 def check_max_age():
     pass

@@ -1,5 +1,5 @@
 import random
-import string
+
 n =int(input('Enter the number of times to print :'))
 
 def func_print_sentence(num:int):
