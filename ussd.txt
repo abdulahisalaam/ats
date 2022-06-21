@@ -1,0 +1,5 @@
+{'firstname': 'abdullah', 'lastname': 'salaam', 'account_b': 0.0, 'pin': 0, 'acc_no': 100000000},
+{'firstname': 'ashroph', 'lastname': 'jubril', 'account_b': 0.0, 'pin': '0000', 'acc_no': 100000000},
+{'firstname': 'abdullah', 'lastname': 'salaam', 'account_b': 0.0, 'pin': '0000', 'acc_no': 121388790},
+{'firstname': 'kolawole', 'lastname': 'alabi', 'account_b': 0.0, 'pin': '0000', 'acc_no': '0121388790'},
+{'firstname': 'tahjudeen', 'lastname': 'irewole', 'account_b': 3000.0, 'pin': '0000', 'acc_no': '2253357990'},

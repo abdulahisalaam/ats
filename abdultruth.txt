@@ -1,0 +1,1 @@
+{'username': 'abdultruth', 'firstname': 'abdullahi', 'lastname': 'salaam', 'password': 'a@12345', 'confirm_password': 'a@12345'}

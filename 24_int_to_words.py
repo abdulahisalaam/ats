@@ -6,12 +6,9 @@ def convert_int_words(num):
           19 : 'nineteen', 20 : 'twenty',
           30 : 'thirty', 40 : 'forty', 50 : 'fifty', 60 : 'sixty',
           70 : 'seventy', 80 : 'eighty', 90 : 'ninety' }
+    
     k = 1000
     m = k * 1000
-    b = m * 1000
-    t = b * 1000
-
-    assert(0 <= num)
 
     if (num < 20):
         return d[num]
@@ -24,16 +21,12 @@ def convert_int_words(num):
     if (num < k):
         if num % 100 == 0:
             return d[num // 100] + ' hundred'
-        else: return d[num // 100] + ' hundred and ' + int_to_en(num % 100)
+        else: return d[num // 100] + ' hundred and ' + convert_int_words(num % 100)
 
-    if (num < m):
+    if (num > k):
         if num % k == 0:
-            return int_to_en(num // k) + ' thousand'
-        else: return int_to_en(num // k) + ' thousand, ' + int_to_en(num % k)
+            return convert_int_words(num // k) + ' thousand'
+        else: return convert_int_words(num // k) + ' thousand, ' + convert_int_words(num % k)
 
-raise AssertionError('num is too large: %s' % str(numb))
-
-
-        
-
-print(convert_int_words(65))
+number=int(input("Enter the number: "))
+print(convert_int_words(number))
