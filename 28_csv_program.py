@@ -18,7 +18,7 @@ import csv
 
 with open("datadict2.csv", "w", newline="") as f:
     header = ['f_name','l_name','gender','age']
-    handler = csv.DictWriter(f, fieldnames=header)
+    handler = csv.DictWriter(f, fieldnames = header)
     handler.writeheader()
     handler.writerow({'f_name':'awal','l_name':'adeleke','gender':'male','age':'30'})
 
