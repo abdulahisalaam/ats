@@ -97,7 +97,6 @@ class User:
     
     
 if __name__ == '__main__':
-    user = User('muh-awal', 'Awal123', 'aS1bdullah', 'ab@.com')
     def body():
         print('welcome <------------>')
         print("Please Enter Option \n 1. SignUp Account-> \n 2. SignIn Account->\n")
