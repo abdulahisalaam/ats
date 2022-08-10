@@ -1,0 +1,31 @@
+<!-- templates/post/post.html -->
+{% extends 'base.html' %}
+  
+{% block content %}
+<div class="container mt-5">
+
+    <div class="row">
+      <div class="card col-lg-6 offset-lg-3 mb-3">
+        {% if post.image %}
+        <hr/>
+        <img class="card-img-top mt-3" src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        <div class="card-body">
+          <a href="{% url 'post-details' post.pk %}">
+            <h2 class="card-title my-3">{{ post.title }} </h2>
+          </a>
+          <div class="text-muted mb-3">
+            <div>
+              <span class="badge badge-dark">{{ post.tag }}</span>
+              <span>Posted by: {{ post.author }} |</span>
+              <span>created: {{ post.created |date:"N j Y" }} |</span>
+              <span>updated: {{ post.updated |timesince }} ago </span>
+              <hr/>
+              <span>{{post.body}}</span>
+              <hr/>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+{% endblock%}

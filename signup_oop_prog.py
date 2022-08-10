@@ -96,18 +96,18 @@ class User:
                 return False
     
     
-if __name__ == '__main__':
-    def body():
-        print('welcome <------------>')
-        print("Please Enter Option \n 1. SignUp Account-> \n 2. SignIn Account->\n")
-        option = input("")
-        if option == '1':
-            print(user.signup())
-        elif option == '2':
-            print(user.signin())
-        else:
-            time.sleep()
-            print(body())
+# if __name__ == '__main__':
+#     def body():
+#         print('welcome <------------>')
+#         print("Please Enter Option \n 1. SignUp Account-> \n 2. SignIn Account->\n")
+#         option = input("")
+#         if option == '1':
+#             print(user.signup())
+#         elif option == '2':
+#             print(user.signin())
+#         else:
+#             time.sleep()
+#             print(body())
 
-    print(body())
+#     print(body())
 

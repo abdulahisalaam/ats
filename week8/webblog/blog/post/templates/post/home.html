@@ -1,0 +1,106 @@
+<!-- templates/core/home.html -->
+{% extends 'base.html' %}
+{% block title %}{{post.tag}}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+  <div class="row">
+    
+    {% for post in post_list %}
+    <div class="card col-lg-6 offset-lg-3 mb-3">
+      <div class="card-body">
+        <a href="{% url 'post-details' post.pk %}">
+          <h2 class="card-title my-3">{{ post.title }} </h2>
+        </a>
+        
+          {% if post.image %}
+        <hr/>
+        <img class="card-img-top mt-3" src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        </div>
+        
+        <div class="text-muted mb-3">
+
+          <div>
+            {% for tag in post.tags.all %}
+            <span class="badge badge-dark">{{ tag }}</span>
+            {% endfor %}
+            <span>Posted by: {{ post.author }} |</span>
+            <span>created on: {{ post.created |date:"N j Y" }} |</span>
+            <span>updated on: {{ post.updated |timesince }} ago </span>
+            {% if  user.is_authenticated %}<small><a href="{% url 'update-post' post.pk %}" class="navbar-brand">Update Post</a>
+              <a href="{% url 'delete-post' post.pk %}" class="navbar-brand">Delete Post</a></small>
+            {% endif %}
+            <hr/>
+            <span>{{post.body}}</span>
+            <br/><br/>
+            
+            <h1>Comments...</h1>
+            <br/>
+            {% for comment in post.comments.all %}
+            <Strong>{{comment.user.username}}  | {{comment.created}}</Strong>
+            <br/>
+            {{comment.body}}
+            <br/>
+            <h1>Comment on: {{post.title}}</h1>
+            <b\><b\>
+            
+            {% empty %}
+            <p>no comment yet.....</p>
+            {% endfor %}
+
+            <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="btn btn-secondary">comment</button>
+            </form>
+            
+            <!-- <a href=" {% url 'add_comment' post.pk %}">Add Comment</a>             -->
+          </div>
+        </div>
+        <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  <div class="row">
+    <nav class="col-lg-6 offset-lg-3 mt-4 d-flex justify-content-center">
+      <ul class="pagination">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+        {% endif %}
+  
+        {% for i in page_obj.paginator.page_range %}
+        <li class=" page-item {% if page_obj.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+  </div>
+  <!-- /Pagination -->
+
+</div>
+{% endblock %}
