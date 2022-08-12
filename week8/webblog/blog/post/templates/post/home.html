@@ -50,11 +50,7 @@
             <p>no comment yet.....</p>
             {% endfor %}
 
-            <form method="POST">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button class="btn btn-secondary">comment</button>
-            </form>
+            
             
             <!-- <a href=" {% url 'add_comment' post.pk %}">Add Comment</a>             -->
           </div>

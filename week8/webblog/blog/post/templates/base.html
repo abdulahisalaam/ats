@@ -20,40 +20,35 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <span class="nav-toggler"></span>
+    <nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <div class="container">
-      
-      
-      
-      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" class="navbar-brand">Abdultruth blog</a></li>   
+      <a class="navbar-link" href="{% url 'home' %}" class="navbar-brand">Abdultruth blog</a>
       {% if user.is_authenticated %}      
-      <li class="nav-item"><a class="nav-link" href="{% url 'add_post' %}" >Add Post</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sign Out</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+      <a class="nav-link" href="{% url 'add_post' %}" >Add Post</a>
+      <a class="nav-link" href="#">Profile</a>
       {% else %}
-      <li class="nav-item"><a class="nav-link" href="{% url 'register' %}" >Sign Up</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" >Login</a></li>
+      <a class="nav-link" href="{% url 'register' %}" >Sign Up</a>
+      <a class="nav-link" href="{% url 'login' %}" >Login</a>
       {% endif %}
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       </div>
     </nav>
 
+    <br/>
+
     <div class="asidebar">
-      <h2></h2>
-    </div>
-
-    {% if user.is_authenticated %} 
-    <div class="card" style="width: 18rem;">
-      <img src="{{ user.usr.avatar.url }}" class="rounded-circle"" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{user.username}}</h5>
+      {% if user.is_authenticated %} 
+      <div class="card" style="width: 9rem;">
+        <ul>
+        <img src="{{ user.usr.avatar.url }}" class="rounded-circle" width="140" height="140" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+        </div>
+        <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+      </ul>
       </div>
+      {% endif %}
     </div>
-    {% endif %}
-    
-
 
 {% block content %}
   

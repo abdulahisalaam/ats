@@ -24,37 +24,50 @@ class Tag(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name='usr')
+
     bio = models.TextField()
+    
     avatar = models.ImageField(upload_to='media',default='default.jfif')
+
+    dob = models.DateTimeField(null=True)
 
     def __str__ (self):
         return str(self.user)
 
 
-
 class Post(models.Model):
+
     STATUS_CHOICES = (('published','Published'),('draft','Draft'))
     
     title = models.CharField(max_length=250)
+
     slug= models.SlugField(max_length=250, unique =True)
+
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_poster')
+
     body = models.TextField()
 
     publish = models.DateTimeField(default=timezone.now)
+
     created = models.DateTimeField(auto_now_add=True)
+    
     updated = models.DateTimeField(auto_now=True)
 
-    image = models.ImageField(upload_to='post/media/', blank=True, null=True, default='default.jpg',help_text='upload image')
+    image = models.ImageField(upload_to='post/media/', blank=True, null=True, default='default.png',help_text='upload image')
+
     tags = models.ManyToManyField(Tag, blank=True)
+    
     status = models.CharField(max_length=10,choices=STATUS_CHOICES, default='draft')
+    
     is_hidden = models.BooleanField(default= False) 
     
     objects = models.Manager()
-    delete_objects = ActivePostManager()
-    active_objects = InActivePostManager()
+    
+    active_objects = ActivePostManager()
+    delete_objects = InActivePostManager()
 
     class meta:
-        ordering = ['-publish']
+        ordering = ['-created']
 
 
     def __str__(self):
@@ -65,8 +78,11 @@ class Post(models.Model):
         return reverse('home')
 
 
+
+
 class Comment(models.Model):
-    
+    post = models.ForeignKey(Post,on_delete = models.CASCADE, related_name='comments')
+
     body = models.TextField()
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
@@ -75,9 +91,8 @@ class Comment(models.Model):
     
     created = models.DateTimeField(auto_now_add = True)
     
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default= False)
 
-    comments = models.ForeignKey('Comment',on_delete = models.CASCADE, related_name='postcomments')
 
     class meta:
         ordering = ('-publish')

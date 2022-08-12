@@ -53,14 +53,15 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     
 class PostList(ListView):
     model = Post
-    queryset = Post.active_objects.all()
+    # queryset = Post.active_objects.all()
+    queryset = Post.delete_objects.all()
     context_object_name = 'post_list'
     # queryset = Post.objects.filter(status='published')
     #fields= '__all__'
     template_name = "index.html"
 
 
-class UserEditView(UserChangeForm):
+class UserUserProfileEditView(UserChangeForm):
     form_class = UserChangeForm
     template_name = 'post/Edit_profile.html'
     success_url = reverse_lazy('home')
@@ -69,7 +70,7 @@ class UserEditView(UserChangeForm):
 class AddCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = "post/home.html"
+    template_name = "post/add_comment.html"
     # template_name = "post/add_comment.html"
     success_url = reverse_lazy('home')
 

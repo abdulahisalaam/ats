@@ -5,7 +5,7 @@ from .models import Post, Tag, UserProfile, Comment
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title','slug','author','publish','status','created')
+    list_display = ('title','slug','author','publish','status','created','is_hidden')
     list_filter = ('status','created','author')
     search_fields = ['title','body']
     prepopulated_fields = {'slug': ('title',)}
